@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Quizzler/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Quizzler/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Quizzler/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Dicee/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Dicee/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Dicee/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Destini/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Destini/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Destini/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Mi Card/mi_card/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Mi Card/mi_card/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Mi Card/mi_card/build" />
+      <excludeFolder url="file://$MODULE_DIR$/XylophoneApp/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/XylophoneApp/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/XylophoneApp/build" />
+      <excludeFolder url="file://$MODULE_DIR$/BMI Calculator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/BMI Calculator/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/BMI Calculator/.pub" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
