@@ -1,4 +1,4 @@
-import 'package:clima_app/screens/location_screen.dart';
+import 'package:meteo_now/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/loading_screen.dart';
 
