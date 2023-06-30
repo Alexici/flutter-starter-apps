@@ -1,26 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:meteo_now/screens/error_screen.dart';
 import 'package:meteo_now/utilities/constants.dart';
 import 'package:meteo_now/utilities/custom_card.dart';
 import 'package:meteo_now/utilities/overview_card.dart';
+import 'package:meteo_now/services/weather.dart';
 
 class LocationScreen extends StatefulWidget {
-  const LocationScreen({Key? key}) : super(key: key);
+  const LocationScreen({Key? key, this.locationWeather}) : super(key: key);
+
+  final Map? locationWeather;
 
   @override
   State<LocationScreen> createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  late double temp;
+  late String condition;
+  late int conditionCode;
+  late String cityName;
+  late String region;
+  late String country;
+  late double windSpeed;
+  late double pressure;
+  late double uvIndex;
+  late String time;
+  late String lastUpdated;
+
+  @override
+  void initState() {
+    super.initState();
+    updateUI(widget.locationWeather);
+  }
+
+  void updateUI(Map? weatherData) {
+    if (weatherData == null) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const ErrorScreen();
+      }));
+    } else {
+      temp = weatherData['current']['temp_c'];
+      condition = weatherData['current']['condition']['text'];
+      conditionCode = weatherData['current']['condition']['code'];
+      cityName = weatherData['location']['name'];
+      region = weatherData['location']['region'];
+      country = weatherData['location']['country'];
+      windSpeed = weatherData['current']['wind_kph'];
+      pressure = weatherData['current']['pressure_mb'];
+      uvIndex = weatherData['current']['uv'];
+      time = weatherData['location']['localtime'];
+
+      List splitTime = time.split(" ");
+      lastUpdated = splitTime[1];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("lib/assets/images/rain/rain1.jpg"),
+                image: WeatherModel().getBackgroundImage(conditionCode),
                 fit: BoxFit.cover),
           ),
           child: SizedBox(
@@ -68,6 +111,9 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
 
+                  const SizedBox(
+                    height: 20,
+                  ),
                   // City Name Widget
                   Card(
                     shape: RoundedRectangleBorder(
@@ -83,25 +129,28 @@ class _LocationScreenState extends State<LocationScreen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                'Soseaua Odaii',
-                                style: TextStyle(
+                                cityName,
+                                style: const TextStyle(
                                     fontFamily: 'OpenSans',
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600),
                               ),
                               Text(
-                                'Bucuresti, Romania',
-                                style: TextStyle(
-                                    fontFamily: 'OpenSans',
-                                    color: Colors.white54),
+                                '$region, $country',
+                                maxLines: 2,
+                                softWrap: true,
+                                style: const TextStyle(
+                                  fontFamily: 'OpenSans',
+                                  color: Colors.white54,
+                                ),
                               )
                             ],
                           ),
-                          const Text(
-                            '08:54 AM',
-                            style: TextStyle(
+                          Text(
+                            lastUpdated,
+                            style: const TextStyle(
                                 fontFamily: 'OpenSans',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500),
@@ -118,44 +167,52 @@ class _LocationScreenState extends State<LocationScreen> {
                     endIndent: 20,
                   ),
 
+                  const SizedBox(
+                    height: 100,
+                  ),
                   // Degree Card
-                  Card(
-                    color: kCardColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    clipBehavior: Clip.hardEdge,
-                    child: SizedBox(
-                      height: 50,
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                '19° C',
-                                style: TextStyle(fontSize: 30),
-                              ),
-                              Text(
-                                'Heavy Rain',
-                                style: TextStyle(fontSize: 20),
-                              )
-                            ],
+                  Expanded(
+                    child: Card(
+                      color: kCardColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      clipBehavior: Clip.hardEdge,
+                      child: SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${temp.toInt().toString()}°',
+                                  style: const TextStyle(fontSize: 30),
+                                ),
+                                Text(
+                                  condition,
+                                  style: const TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 100,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       CustomCard(
                         rad: 20,
                         child: OverviewCard(
                           icon: Icons.wind_power,
                           title: 'Wind Speed',
-                          data: '12 Km/h',
+                          data: windSpeed.toString(),
                         ),
                       ),
                       CustomCard(
@@ -163,7 +220,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         child: OverviewCard(
                           icon: Icons.water,
                           title: 'Pressure',
-                          data: '720 hpa',
+                          data: pressure.toString(),
                         ),
                       ),
                       CustomCard(
@@ -171,7 +228,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         child: OverviewCard(
                           icon: Icons.sunny,
                           title: 'UV Index',
-                          data: '2.3',
+                          data: uvIndex.toString(),
                         ),
                       ),
                     ],

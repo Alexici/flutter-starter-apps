@@ -14,32 +14,35 @@ class OverviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const SizedBox(
-          width: 10,
-        ),
-        Icon(
-          icon,
-          color: Colors.blueAccent,
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-            ),
-            Text(data),
-          ],
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const SizedBox(
+            width: 10,
+          ),
+          Icon(
+            icon,
+            color: Colors.blueAccent,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+              ),
+              Text(data),
+            ],
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
     );
   }
 }

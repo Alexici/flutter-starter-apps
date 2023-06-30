@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meteo_now/screens/location_screen.dart';
 import 'package:meteo_now/services/location.dart';
 import '../services/networking.dart';
 
@@ -20,6 +21,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Networking networking = Networking();
 
     var weatherData = await networking.getData(latitude, longitude);
+
+    if (context.mounted) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return LocationScreen(
+          locationWeather: weatherData,
+        );
+      }));
+    }
   }
 
   @override

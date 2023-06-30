@@ -1,0 +1,41 @@
+{
+  "location": {
+    "name": "Mountain View",
+    "region": "California",
+    "country": "United States of America",
+    "lat": 37.42,
+    "lon": -122.08,
+    "tz_id": "America/Los_Angeles",
+    "localtime_epoch": 1688140319,
+    "localtime": "2023-06-30 8:51"
+  },
+  "current": {
+    "last_updated_epoch": 1688139900,
+    "last_updated": "2023-06-30 08:45",
+    "temp_c": 18,
+    "temp_f": 64.4,
+    "is_day": 1,
+    "condition": {
+      "text": "Sunny",
+      "icon": "//cdn.weatherapi.com/weather/64x64/day/113.png",
+      "code": 1000
+    },
+    "wind_mph": 2.2,
+    "wind_kph": 3.6,
+    "wind_degree": 10,
+    "wind_dir": "N",
+    "pressure_mb": 1013,
+    "pressure_in": 29.92,
+    "precip_mm": 0,
+    "precip_in": 0,
+    "humidity": 77,
+    "cloud": 0,
+    "feelslike_c": 18,
+    "feelslike_f": 64.4,
+    "vis_km": 16,
+    "vis_miles": 9,
+    "uv": 5,
+    "gust_mph": 0.2,
+    "gust_kph": 0.4
+  }
+}
