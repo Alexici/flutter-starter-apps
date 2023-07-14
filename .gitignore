@@ -1,1 +1,3 @@
 .key
+coin_ticker/.venv/key.dart
+coin_ticker/lib/key.dart
