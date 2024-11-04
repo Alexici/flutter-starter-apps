@@ -10,7 +10,7 @@ It contains mostly basic projects maily for learning the basics of Flutter & Dar
 
 2. **BMI Calculator**
 
-   Just as it says, a simple BMW Calculator with 2 screens. Some features are not working as they are only for design purpose.
+   Just as it says, a simple BMI Calculator with 2 screens. Some features are not working as they are only for design purpose.
 
 3. **Destini**
 
